@@ -7,15 +7,10 @@ import { selectNameFilter } from '../../../redux/filtersSlice';
 const ContactList = () => {
   const contacts = useSelector(selectContacts);
   const filterName = useSelector(selectNameFilter);
-  const dispatch = useDispatch();
 
   const filteredContacts = contacts.filter((contact) =>
     contact.name.toLowerCase().includes(filterName.toLowerCase())
   );
-
-  const handleDeleteContact = (contactId) => {
-    dispatch(deleteContact(contactId));
-  };
 
   return (
     <ul className={style.list}>
@@ -25,7 +20,6 @@ const ContactList = () => {
             contactId={contact.id}
             contactName={contact.name}
             contactNumber={contact.number}
-            deleteContact={handleDeleteContact}
           />
         </li>
       ))}
